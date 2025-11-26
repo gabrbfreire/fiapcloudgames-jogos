@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapCloudGames.Jogos.API", "src\FiapCloudGames.Jogos.API\FiapCloudGames.Jogos.API.csproj", "{B0C09357-BB39-FFCE-CD94-3AE49BE2A0D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapCloudGames.Jogos.Core", "src\FiapCloudGames.Jogos.Core\FiapCloudGames.Jogos.Core.csproj", "{3FA9385B-3317-C673-456F-F5B3AA8CF808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapCloudGames.Jogos.Infra", "src\FiapCloudGames.Jogos.Infra\FiapCloudGames.Jogos.Infra.csproj", "{B1E179D6-47C3-BAD0-02A2-524512EC302E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapCloudGames.Jogos.Test", "src\FiapCloudGames.Jogos.Test\FiapCloudGames.Jogos.Test.csproj", "{B406186C-9F9E-E050-0C11-B5AF533FF635}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FA9385B-3317-C673-456F-F5B3AA8CF808} = {3FA9385B-3317-C673-456F-F5B3AA8CF808}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81DDED9D-158B-E303-5F62-77A2896D2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0C09357-BB39-FFCE-CD94-3AE49BE2A0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0C09357-BB39-FFCE-CD94-3AE49BE2A0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0C09357-BB39-FFCE-CD94-3AE49BE2A0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0C09357-BB39-FFCE-CD94-3AE49BE2A0D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FA9385B-3317-C673-456F-F5B3AA8CF808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FA9385B-3317-C673-456F-F5B3AA8CF808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FA9385B-3317-C673-456F-F5B3AA8CF808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FA9385B-3317-C673-456F-F5B3AA8CF808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E179D6-47C3-BAD0-02A2-524512EC302E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E179D6-47C3-BAD0-02A2-524512EC302E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E179D6-47C3-BAD0-02A2-524512EC302E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E179D6-47C3-BAD0-02A2-524512EC302E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B406186C-9F9E-E050-0C11-B5AF533FF635}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B406186C-9F9E-E050-0C11-B5AF533FF635}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B406186C-9F9E-E050-0C11-B5AF533FF635}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B406186C-9F9E-E050-0C11-B5AF533FF635}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9438B1C4-F89A-4ED5-B130-0AA4865E5DDA}
+	EndGlobalSection
+EndGlobal

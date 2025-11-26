@@ -4,7 +4,7 @@
       "commandName": "DockerCompose",
       "commandVersion": "1.0",
       "serviceActions": {
-        "fiapcloudgames.api": "StartDebugging"
+        "FiapCloudGames.Jogos.api": "StartDebugging"
       }
     }
   }

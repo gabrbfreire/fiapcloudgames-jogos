@@ -1,0 +1,70 @@
+﻿using FiapCloudGames.Jogos.Core.Entities;
+using FiapCloudGames.Jogos.Core.Interfaces.Repositories;
+using FiapCloudGames.Jogos.Core.Interfaces.Services;
+
+namespace FiapCloudGames.Jogos.Core.Services;
+
+public class JogoService : IJogoService
+{
+    private readonly IJogoRepository _jogoRepository;
+
+    public JogoService(IJogoRepository jogoRepository)
+    {
+        _jogoRepository = jogoRepository;
+    }
+
+    public async Task<IEnumerable<Jogo>> BuscarTodosAsync()
+    {
+        return await _jogoRepository.BuscarTodosAsync();
+    }
+
+    public async Task<Jogo?> BuscarPorIdAsync(Guid id)
+    {
+        return await _jogoRepository.BuscarPorIdAsync(id);
+    }
+
+    public async Task<Jogo> AdicionarAsync(Jogo jogo)
+    {
+        await _jogoRepository.AdicionarAsync(jogo);
+        return jogo;
+    }
+
+    public async Task AtualizarAsync(Jogo jogo)
+    {
+        await _jogoRepository.AtualizarAsync(jogo);
+    }
+
+    public async Task<bool> RemoverAsync(Guid id)
+    {
+        var jogo = await _jogoRepository.BuscarPorIdAsync(id);
+        if (jogo is null)
+            return false;
+
+        await _jogoRepository.RemoverAsync(jogo);
+        return true;
+    }
+
+    public async Task<IEnumerable<Jogo>> BuscarJogosComPrecoDeDescontoAsync(DateTime dataReferencia)
+    {
+        var jogos = await _jogoRepository.BuscarTodosAsync();
+
+        foreach (var jogo in jogos)
+            CalcularPrecoComDesconto(dataReferencia, jogo);
+
+        return jogos;
+    }
+
+    private void CalcularPrecoComDesconto(DateTime dataAtual, Jogo jogo)
+    {
+        if (jogo.Promocoes is null) return;
+
+        var promocaoMaisGenerosa = jogo.Promocoes
+            .Where(p => p.EstaAtiva(dataAtual))
+            .OrderByDescending(p => p.PercentualDeDesconto)
+            .FirstOrDefault();
+
+        if (promocaoMaisGenerosa is null) return;
+
+        jogo.Preco = jogo.Preco * (promocaoMaisGenerosa.PercentualDeDesconto / 100m);
+    }
+}

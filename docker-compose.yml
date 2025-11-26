@@ -1,11 +1,11 @@
 services:
   postgres:
     image: postgres:15
-    container_name: fiapcloudgames-postgres
+    container_name: FiapCloudGames.Jogos-postgres
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
-      POSTGRES_DB: fiapcloudgames
+      POSTGRES_DB: FiapCloudGames.Jogos
     ports:
       - "5432:5432"
     volumes:
@@ -14,16 +14,16 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./src/FiapCloudGames.API/Dockerfile
+      dockerfile: ./src/FiapCloudGames.Jogos.API/Dockerfile
     image: fcg-app
-    container_name: fiapcloudgames-api
+    container_name: FiapCloudGames.Jogos-api
     ports:
       - "5000:5000"
     depends_on:
       - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=fiapcloudgames;Username=admin;Password=admin123
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=FiapCloudGames.Jogos;Username=admin;Password=admin123
       - ASPNETCORE_URLS=http://+:5000
 
 volumes:
