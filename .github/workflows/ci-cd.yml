@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD Jogos
 
 on:
   push:
@@ -21,21 +21,21 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t fcgregistrygabrielfg.azurecr.io/fiapcloudgames-jogos:latest \
+            -t fiapcloudgamesacr1.azurecr.io/fiapcloudgames-jogos:latest \
             .
 
       - name: Login to ACR
         run: |
-          az acr login --name fcgregistrygabrielfg
+          az acr login --name fiapcloudgamesacr1
 
       - name: Push Docker image to ACR
         run: |
-          docker push fcgregistrygabrielfg.azurecr.io/fiapcloudgames-jogos:latest
+          docker push fiapcloudgamesacr1.azurecr.io/fiapcloudgames-jogos:latest
 
       - name: Deploy to Azure Web App
         run: |
           az webapp config container set \
             --name fiapcloudgames-jogos-app \
             --resource-group fiapcloudgames-rg \
-            --docker-custom-image-name fcgregistrygabrielfg.azurecr.io/fiapcloudgames-jogos:latest \
-            --docker-registry-server-url https://fcgregistrygabrielfg.azurecr.io
+            --docker-custom-image-name fiapcloudgamesacr1.azurecr.io/fiapcloudgames-jogos:latest \
+            --docker-registry-server-url https://fiapcloudgamesacr1.azurecr.io
