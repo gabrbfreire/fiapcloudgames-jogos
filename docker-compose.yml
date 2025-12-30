@@ -18,13 +18,13 @@ services:
     image: fcg-app
     container_name: FiapCloudGames.Jogos-api
     ports:
-      - "5000:5000"
+      - "5001:5001"
     depends_on:
       - postgres
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=FiapCloudGames.Jogos;Username=admin;Password=admin123
-      - ASPNETCORE_URLS=http://+:5000
+      - ASPNETCORE_URLS=http://+:5001
 
 volumes:
   postgres_data:
