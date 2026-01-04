@@ -1,4 +1,7 @@
+using Elastic.Clients.Elasticsearch;
+using Elastic.Transport;
 using FiapCloudGames.Jogos.API.Middlewares;
+using FiapCloudGames.Jogos.API.Properties;
 using FiapCloudGames.Jogos.Core.Entities.Identity;
 using FiapCloudGames.Jogos.Core.Interfaces.Repositories;
 using FiapCloudGames.Jogos.Core.Interfaces.Services;
@@ -71,6 +74,22 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+var settings = new ElasticsearchClientSettings(new Uri(
+    builder.Configuration["ElasticSearch:Uri"]!
+))
+.Authentication(new BasicAuthentication(
+    builder.Configuration["ElasticSearch:Username"]!,
+    builder.Configuration["ElasticSearch:Password"]!
+))
+.ServerCertificateValidationCallback((_, _, _, _) => true);
+
+var elasticClient = new ElasticsearchClient(settings);
+
+builder.Services.AddSingleton(elasticClient);
+
+ElasticSettings.ApiKey = builder.Configuration["ElasticSearch:ApiKey"]!;
+ElasticSettings.CloudId = builder.Configuration["ElasticSearch:CloudId"]!;
 
 var app = builder.Build();
 
