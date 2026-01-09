@@ -87,6 +87,28 @@ public class JogoController : ControllerBase
     }
 
     //--------------------------------------------------ELASTICSEARCH--------------------------------------------------
+    [HttpPost("{id:guid}/visualizacao")]
+    public async Task<IActionResult> AdicionarVisualizacao(Guid id)
+    {
+        var request = new UpdateRequest<GameIndex, object>("games", id)
+        {
+            Script = new Script
+            {
+                Source = "ctx._source.visualizacoes += 1"
+            }
+        };
+
+        var response = await _client.UpdateAsync(request);
+
+        if (!response.IsValidResponse)
+            return Problem(
+                response.ElasticsearchServerError?.Error?.Reason,
+                statusCode: 500
+            );
+
+        return NoContent();
+    }
+
     [HttpGet("buscar")]
     public async Task<IActionResult> Buscar(string termo)
     {
